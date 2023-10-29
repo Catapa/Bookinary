@@ -1,21 +1,28 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useRouter } from 'expo-router';
+
 import { ITrendingItem } from "../../../../types";
-import { getCover } from "../../../../api/common/getCover";
 
 interface IProps {
 	item: ITrendingItem
 };
 export const TrendingCard = ({item}: IProps) => {
-	//const {data: cover, isLoading, error} = getCover('olid', item.cover_edition_key, 'S');
-	//console.log(cover.url);
-	const [cover_key, cover_key_value, size] = ['olid', item.cover_edition_key, 'M'];
-	console.log(`https://covers.openlibrary.org/b/${cover_key}/${cover_key_value}-${size}.jpg`);
+	const router = useRouter();
+	const getCoverUrl = (cover_key: string, cover_key_value: string, size: 'S' | 'M' | 'L') => {
+		return `https://covers.openlibrary.org/b/${cover_key}/${cover_key_value}-${size}.jpg`;
+	};
+	const navigateToDetails = (work_key: string) => {
+		router.push(`works/${work_key}`);
+	};
 	return (
-		<TouchableOpacity style={styles.card}>
+		<TouchableOpacity 
+			style={styles.card}
+			onPress={() => navigateToDetails(item.cover_edition_key)}
+		>
 			<View style={styles.coverContainer}>
 				<Image 
 				source={{
-						uri: `https://covers.openlibrary.org/b/${cover_key}/${cover_key_value}-${size}.jpg`
+						uri: getCoverUrl('olid', item.cover_edition_key, 'M')
 					}}
 				resizeMode={'contain'}
 				style={styles.coverImage}

@@ -55,3 +55,32 @@ export interface ITrendingItem {
 	 */
 	author_name: string[]
 };
+
+export interface IWorkEdition extends IResponse {
+	data: {
+		[key: string]: {
+			url: string,
+			key: string,
+			title: string,
+			subtitle: string,
+			authors: Array<{
+				url: string,
+				name: string
+			}>,
+			number_of_pages: number,
+			publishers: Array<{
+				name: string
+			}>,
+			publish_date: string,
+			subjects: Array<{
+				name: string,
+				url: string
+			}>,
+			cover: {
+				small: string,
+				medium: string,
+				large: string
+			}
+		}
+	}
+};
