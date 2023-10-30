@@ -1,2 +1,2 @@
-import { Trending } from "./Trending";
+import { Trending } from './Trending';
 export { Trending };

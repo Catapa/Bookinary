@@ -1,28 +1,29 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Alert } from "react-native";
+import axios, { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 
-import { IResponse } from "../../types";
+import { IResponse } from '../../../types';
 
-const BASE_URL = "https://openlibrary.org";
+const BASE_URL = 'https://openlibrary.org';
 
 export const useRequest = (
   endpoint: string,
   params?: object,
   base_url?: string,
+  shouldFetch: boolean = true,
 ): IResponse => {
   const [info, setInfo] = useState<{
-    data: object;
+    data: object | undefined;
     isLoading: boolean;
     error: Error | null;
   }>({
-    data: {},
+    data: undefined,
     isLoading: true,
     error: null,
   });
   const updateState = async (
     field: string,
-    value: object | boolean | Error,
+    value: object | boolean | Error | undefined,
   ) => {
     setInfo((prevState) => ({
       ...prevState,
@@ -31,39 +32,41 @@ export const useRequest = (
   };
 
   const options = {
-    method: "GET",
+    method: 'GET',
     url: base_url ? `${base_url}/${endpoint}` : `${BASE_URL}/${endpoint}`,
     params: { ...params },
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
   const fetchData = async () => {
-    await updateState("isLoading", true);
+    await updateState('isLoading', true);
     try {
       const response = await axios.request(options);
-      await updateState("data", response.data);
+      await updateState('data', response.data);
       //console.log('response', response);
     } catch (error) {
-      if (error instanceof Error) {
-        await updateState("error", error);
-        Alert.alert("Something went wrong", error.message);
+      if (error instanceof AxiosError) {
+        await updateState('error', error);
+        Alert.alert('Something went wrong', JSON.stringify(error.request));
         //console.error(error.message);
       }
     } finally {
-      await updateState("isLoading", false);
+      await updateState('isLoading', false);
     }
   };
 
   const refetch = async () => {
-    await updateState("isLoading", true);
+    await updateState('isLoading', true);
     fetchData();
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (shouldFetch) {
+      fetchData();
+    }
+  }, [shouldFetch]);
 
   return {
     data: info.data,

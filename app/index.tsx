@@ -1,7 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { Trending } from "../components";
+import { Trending } from '../components';
 
 export default function App() {
   return (
@@ -17,8 +17,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fffdef",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    backgroundColor: '#FAFAFC',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 });

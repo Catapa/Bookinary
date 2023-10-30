@@ -1,16 +1,16 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from 'expo-router';
 import {
-  ActivityIndicator,
   Image,
   StyleSheet,
   Text,
   View,
   ScrollView,
-} from "react-native";
+  RefreshControl,
+} from 'react-native';
 
-import { getEdition, getWorkKey, getWork } from "../../api/common";
-import { Loader } from "../../components/common/loader";
-import { IWork, T_Edition_Key, T_Work_Key } from "../../types";
+import { useEdition, useWorkKey, useWork } from '../../api/hooks';
+import { Loader } from '../../components/common/loader';
+import { IWork, T_Edition_Key, T_Work_Key } from '../../types';
 
 const BookDetailPage = () => {
   const { edition_key } = useLocalSearchParams();
@@ -19,41 +19,84 @@ const BookDetailPage = () => {
     data: edition,
     isLoading: editionLoading,
     error: editionError,
-  } = getEdition(edition_key as T_Edition_Key);
-  const book = edition[`OLID:${edition_key}`];
+    refetch: refetchEdition,
+  } = useEdition(edition_key as T_Edition_Key);
+  const book = edition?.[`OLID:${edition_key}`] ?? {};
 
-  //const {work_key, isLoading: workKeyLoading} = getWorkKey(edition_key as T_Edition_Key);
-  //console.log(work_key);
+  const { work_key, isLoading: workKeyLoading } = useWorkKey(
+    edition_key as T_Edition_Key,
+  );
 
-  //const{data: work, isLoading: workLoading, error: workError} = getWork(work_key); // TODO: BUG: fix initial valuefor work_key 'undefined'
+  const {
+    data: work,
+    isLoading: workLoading,
+    error: workError,
+  } = useWork(work_key, !workKeyLoading); // TODO: BUG: fix initial valuefor work_key 'undefined'
 
   if (editionLoading) return <Loader />;
   if (editionError) return <Text>Something went wrong</Text>;
   return (
-    <View>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      refreshControl={
+        <RefreshControl
+          refreshing={editionLoading}
+          onRefresh={() => refetchEdition()}
+        />
+      }
+    >
       <Stack.Screen />
-      <Image
-        source={{
-          uri: book?.cover.medium,
-        }}
-        style={styles.bookImage}
-        resizeMode="contain"
-      />
-      <Text>{book.title}</Text>
-      <Text>{book.subtitle}</Text>
-      <Text>{book.authors[0].name}</Text>
-    </View>
+      <View style={styles.bookImageContainer}>
+        <Image
+          source={{
+            uri: book?.cover.medium,
+          }}
+          style={styles.bookImage}
+          resizeMode="contain"
+        />
+      </View>
+
+      <Text style={styles.bookTitle}>{book.title}</Text>
+      <Text style={styles.bookSubtitle}>{book.subtitle}</Text>
+      <Text style={styles.bookAuthor}>{book.authors[0].name}</Text>
+      <Text style={styles.bookDescription}>
+        {work?.description || 'No description'}
+      </Text>
+      {/* <Text>{work_key + ' --- ' + JSON.stringify(book)}</Text> */}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: "100%",
+    width: '100%',
+    backgroundColor: '#FAFAFC',
+    padding: 16,
   },
   bookImage: {
-    width: "50%",
-    height: "50%",
+    width: '100%',
+    height: 275,
+  },
+  bookImageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bookTitle: {
+    fontSize: 24,
+    textAlign: 'center',
+    color: 'rgb(50, 50, 50)',
+  },
+  bookSubtitle: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'rgb(170, 170, 170)',
+  },
+  bookAuthor: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  bookDescription: {
+    fontSize: 16,
   },
 });
 

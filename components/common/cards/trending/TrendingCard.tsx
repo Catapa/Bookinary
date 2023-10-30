@@ -1,7 +1,7 @@
-import { useRouter } from "expo-router";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useRouter } from 'expo-router';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import { ITrendingItem } from "../../../../types";
+import { ITrendingItem } from '../../../../types';
 
 interface IProps {
   item: ITrendingItem;
@@ -11,7 +11,7 @@ const TrendingCard = ({ item }: IProps) => {
   const getCoverUrl = (
     cover_key: string,
     cover_key_value: string,
-    size: "S" | "M" | "L",
+    size: 'S' | 'M' | 'L',
   ) => {
     return `https://covers.openlibrary.org/b/${cover_key}/${cover_key_value}-${size}.jpg`;
   };
@@ -26,7 +26,7 @@ const TrendingCard = ({ item }: IProps) => {
       <View style={styles.coverContainer}>
         <Image
           source={{
-            uri: getCoverUrl("olid", item.cover_edition_key, "M"),
+            uri: getCoverUrl('olid', item.cover_edition_key, 'M'),
           }}
           resizeMode="contain"
           style={styles.coverImage}
@@ -35,7 +35,7 @@ const TrendingCard = ({ item }: IProps) => {
       <Text numberOfLines={1} style={styles.title}>
         {item.title}
       </Text>
-      <Text style={styles.author}>{item.author_name?.join(" ")}</Text>
+      <Text style={styles.author}>{item.author_name?.join(' ')}</Text>
     </TouchableOpacity>
   );
 };
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1 / 2,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     padding: 12,
   },
   title: {
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
   coverContainer: {
     marginHorizontal: 12,
     //borderWidth: 1,
-    borderColor: "#888",
-    alignItems: "center",
+    borderColor: '#888',
+    alignItems: 'center',
     height: 170,
   },
   coverImage: {
-    width: "70%",
-    height: "100%",
+    width: '70%',
+    height: '100%',
   },
 });
