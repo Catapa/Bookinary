@@ -1,4 +1,2 @@
 import { Trending } from "./Trending";
-export {
-	Trending
-};
+export { Trending };

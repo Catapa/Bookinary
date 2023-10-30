@@ -1,10 +1,5 @@
-import { getTrendingBooks } from "./getTrendingBooks";
 import { getEdition } from "./getEdition";
-import { getWorkKey } from "./getWorkKey";
+import { getTrendingBooks } from "./getTrendingBooks";
 import { getWork } from "./getWork";
-export {
-	getTrendingBooks,
-	getEdition,
-	getWorkKey,
-	getWork
-};
+import { getWorkKey } from "./getWorkKey";
+export { getTrendingBooks, getEdition, getWorkKey, getWork };
