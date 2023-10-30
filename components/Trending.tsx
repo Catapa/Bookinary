@@ -1,29 +1,33 @@
-import { ActivityIndicator, FlatList, View, Text, StyleSheet } from "react-native";
+import { FlatList, View, Text, StyleSheet } from "react-native";
 import { getTrendingBooks } from "../api/common";
 import { TrendingCard } from "./common";
+import { Suspense } from "react";
+import { Loader } from "./common/loader";
 
 export const Trending = () => {
 	const {data, isLoading, error, refetch} = getTrendingBooks('daily');
 
+	//if (isLoading) return(<Loader />);
+	if (error) return(<Text>Something went wrong</Text>)
 	return (
-		<View style={styles.trendingList}>
-			{
-			isLoading ? <ActivityIndicator size={'large'}/>
-			: error ? <Text>Something went wrong {error.message}</Text>
-			: (
-				<FlatList
-				data={data.works}
-				numColumns={2}
-				renderItem={({item}) => (
-					<TrendingCard item={item}/>
-				)}
-				keyExtractor={(item) => item.key}
-				refreshing={isLoading}
-				onRefresh={() => refetch()}
-				/>
-				)
-		}
-		</View>
+		
+			<View style={styles.trendingList}>
+				<Suspense fallback={ <Text>Amu no</Text>}>
+					<FlatList
+					data={data.works}
+					numColumns={2}
+					renderItem={({item}) => (
+						<TrendingCard item={item}/>
+					)}
+					keyExtractor={(item) => item.key}
+					refreshing={isLoading}
+					onRefresh={() => refetch()}
+					/>
+				</Suspense>
+			</View>
+
+		
+		
 	  );
 };
 

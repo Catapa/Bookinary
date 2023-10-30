@@ -6,18 +6,18 @@ import { ITrendingItem } from "../../../../types";
 interface IProps {
 	item: ITrendingItem
 };
-export const TrendingCard = ({item}: IProps) => {
+const TrendingCard = ({item}: IProps) => {
 	const router = useRouter();
 	const getCoverUrl = (cover_key: string, cover_key_value: string, size: 'S' | 'M' | 'L') => {
 		return `https://covers.openlibrary.org/b/${cover_key}/${cover_key_value}-${size}.jpg`;
 	};
-	const navigateToDetails = (work_key: string) => {
-		router.push(`works/${work_key}`);
+	const navigateToDetails = (edition_key: string, work_key: string) => {
+		router.push(`/book/${edition_key}`);
 	};
 	return (
 		<TouchableOpacity 
 			style={styles.card}
-			onPress={() => navigateToDetails(item.cover_edition_key)}
+			onPress={() => navigateToDetails(item.cover_edition_key, item.key)}
 		>
 			<View style={styles.coverContainer}>
 				<Image 
@@ -34,6 +34,7 @@ export const TrendingCard = ({item}: IProps) => {
 		</TouchableOpacity>
 	);
 };
+export default TrendingCard;
 
 const styles = StyleSheet.create({
 	card: {

@@ -9,7 +9,7 @@ const BASE_URL = 'https://openlibrary.org';
 export const useRequest = (endpoint: string, params?: object, base_url?: string): IResponse => {
 	const [info, setInfo] = useState<{ data: object, isLoading: boolean, error: Error | null }>({
 		data: {},
-		isLoading: false,
+		isLoading: true,
 		error: null
 	});
 	const updateState = async (field: string, value: object | boolean | Error) => {
@@ -27,7 +27,7 @@ export const useRequest = (endpoint: string, params?: object, base_url?: string)
 		url: base_url ? `${base_url}/${endpoint}` : `${BASE_URL}/${endpoint}`,
 		params: { ...params },
 		headers: {
-
+			'Content-Type': 'application/json'
 		}
 	};
 
@@ -41,7 +41,7 @@ export const useRequest = (endpoint: string, params?: object, base_url?: string)
 			if (error instanceof Error) {
 				await updateState('error', error);
 				Alert.alert('Something went wrong', error.message);
-				console.error(error.message);
+				//console.error(error.message);
 			}
 		} finally {
 			await updateState('isLoading', false);

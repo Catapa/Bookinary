@@ -19,40 +19,16 @@ export interface ITrendingResponse extends IResponse {
  */
 export interface ITrendingItem {
 	/**
-	 * Endpoint for the book's page
+	 * Endpoint for the work's page
 	 */
-	key: string,
-	/**
-	 * Title of the book.
-	 */
+	key: `works/${T_Work_Key}`,
 	title: string,
-	/**
-	 * The year when  was first published.
-	 */
 	first_publish_year: number,
-	/**
-	 * Indicates whether the item has full text available.
-	 */
 	has_fulltext: boolean,
-	/**
-	 * Unique key for the edition's cover
-	 */
-	cover_edition_key: string,
-	/**
-	 * 
-	 */
+	cover_edition_key: T_Edition_Key,
 	cover_i: number,
-	/**
-	 * An array of languages associated.
-	 */
 	language: string[],
-	/**
-	 * An array of unique identifiers for the authors of the item.
-	 */
 	author_key: string[],
-	/**
-	 *  An array of author names associated
-	 */
 	author_name: string[]
 };
 
@@ -67,6 +43,11 @@ export interface IWorkEdition extends IResponse {
 				url: string,
 				name: string
 			}>,
+			identifiers: {
+				isbn_13?: string[],
+				isbn_10?: string[],
+				openlibrary?: string[]
+			}
 			number_of_pages: number,
 			publishers: Array<{
 				name: string
@@ -84,3 +65,45 @@ export interface IWorkEdition extends IResponse {
 		}
 	}
 };
+
+export interface IWork extends IResponse {
+	data: {
+		description: string,
+		subjects: string[],
+		key: string,
+		title: string,
+		authors: {
+			author: {
+				key: string
+			},
+			type: {
+				key: string
+			}
+		}[],
+		type: {
+			key: string
+		},
+		covers: number[],
+		links: {
+			title: string,
+			url: string,
+			type: {
+				key: string
+			}
+		}[],
+		latest_revision: number,
+		revision: number,
+		created: {
+			type: string,
+			value: string
+		},
+		last_modified: {
+			type: string,
+			value: string
+		}
+	}
+};
+
+export type T_Edition_Key = `OL${string}M`;
+
+export type T_Work_Key = `OL${string}W`;
