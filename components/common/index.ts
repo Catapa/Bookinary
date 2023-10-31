@@ -1,2 +1,3 @@
 import TrendingCard from './cards/trending/TrendingCard';
-export { TrendingCard };
+import { Loader } from './loader';
+export { TrendingCard, Loader };
