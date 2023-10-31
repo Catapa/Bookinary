@@ -6,7 +6,7 @@ import { Loader } from './common/loader';
 import { useTrendingBooks } from '../api/hooks';
 
 export const Trending = () => {
-  const { data, isLoading, error, refetch } = useTrendingBooks('daily');
+  const { data, isLoading, error, refetch } = useTrendingBooks('monthly');
 
   if (isLoading) return <Loader />;
   if (error) return <Text>Something went wrong</Text>;

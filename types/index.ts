@@ -56,6 +56,11 @@ export interface IWorkEdition extends IResponse {
         name: string;
         url: string;
       }[];
+      excerpts: {
+        text: string;
+        comment: string;
+        first_sentence: boolean;
+      }[];
       cover: {
         small: string;
         medium: string;
@@ -69,6 +74,7 @@ export interface IWork extends IResponse {
   data: {
     description: string;
     subjects: string[];
+    first_publish_date?: string;
     key: string;
     title: string;
     authors: {

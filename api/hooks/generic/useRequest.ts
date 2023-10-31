@@ -25,7 +25,7 @@ export const useRequest = (
     field: string,
     value: object | boolean | Error | undefined,
   ) => {
-    setInfo((prevState) => ({
+    await setInfo((prevState) => ({
       ...prevState,
       [field]: value,
     }));
