@@ -21,11 +21,11 @@ export const useRequest = (
     isLoading: true,
     error: null,
   });
-  const updateState = async (
+  const updateState = (
     field: string,
     value: object | boolean | Error | undefined,
   ) => {
-    await setInfo((prevState) => ({
+    setInfo((prevState) => ({
       ...prevState,
       [field]: value,
     }));
@@ -41,24 +41,25 @@ export const useRequest = (
   };
 
   const fetchData = async () => {
-    await updateState('isLoading', true);
+    updateState('isLoading', true);
     try {
       const response = await axios.request(options);
-      await updateState('data', response.data);
+      const data = await response.data;
+      updateState('data', data);
       //console.log('response', response);
     } catch (error) {
       if (error instanceof AxiosError) {
-        await updateState('error', error);
+        updateState('error', error);
         Alert.alert('Something went wrong', JSON.stringify(error.request));
         //console.error(error.message);
       }
     } finally {
-      await updateState('isLoading', false);
+      updateState('isLoading', false);
     }
   };
 
   const refetch = async () => {
-    await updateState('isLoading', true);
+    updateState('isLoading', true);
     fetchData();
   };
 

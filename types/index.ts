@@ -72,7 +72,12 @@ export interface IWorkEdition extends IResponse {
 
 export interface IWork extends IResponse {
   data: {
-    description: string;
+    description:
+      | string
+      | {
+          type: string;
+          value: string;
+        };
     subjects: string[];
     first_publish_date?: string;
     key: string;

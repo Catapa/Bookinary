@@ -35,7 +35,7 @@ const BookDetailPage = () => {
   } = useWork(work_key, !workKeyLoading); // TODO: BUG: fix initial valuefor work_key 'undefined'
 
   if (editionLoading || workLoading) return <Loader />;
-  if (editionError) return <Text>Something went wrong</Text>;
+  if (editionError || workError) return <Text>Something went wrong</Text>;
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -72,7 +72,11 @@ const BookDetailPage = () => {
         <Text style={styles.saveButtonText}>Save to library</Text>
       </TouchableOpacity>
       <Text style={styles.bookDescription}>
-        {work.description ?? 'No description provided'}
+        {typeof work.description === 'string'
+          ? work.description
+          : typeof work.description === 'object'
+          ? work.description.value
+          : 'No description provided'}
       </Text>
       <View style={styles.subjectContainer}>
         <Text style={styles.subjectHeader}>Subjects:</Text>
