@@ -80,7 +80,7 @@ const BookDetailPage = () => {
       </Text>
       <View style={styles.subjectContainer}>
         <Text style={styles.subjectHeader}>Subjects:</Text>
-        {book.subjects.map((subject) => (
+        {book.subjects?.map((subject) => (
           <Text key={subject.name} style={styles.subjectTag}>
             {subject.name}
           </Text>

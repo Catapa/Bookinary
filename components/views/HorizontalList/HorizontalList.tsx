@@ -1,4 +1,6 @@
+import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { ReactNode } from 'react';
 import {
   FlatList,
   View,
@@ -25,7 +27,17 @@ export const HorizontalList = ({
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headingText}>{heading}</Text>
+        <Text style={styles.headingText}>
+          {heading + ' '}
+          {heading.toLowerCase() === 'trending' && (
+            <Feather
+              name="trending-up"
+              size={24}
+              color="black"
+              style={{ padding: 16 }}
+            />
+          )}
+        </Text>
         <TouchableOpacity
           style={styles.showAllContainer}
           onPress={() => {
