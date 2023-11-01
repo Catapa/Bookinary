@@ -1,7 +1,7 @@
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 
 import { IResponse } from '../../../types';
-import { Loader, TrendingCard } from '../../common';
+import { Loader, BookCard } from '../../common';
 
 export const Grid = ({ data, isLoading, error, refetch }: IResponse) => {
   if (isLoading) return <Loader />;
@@ -11,11 +11,10 @@ export const Grid = ({ data, isLoading, error, refetch }: IResponse) => {
       <FlatList
         data={data}
         numColumns={3}
-        renderItem={({ item }) => <TrendingCard item={item} />}
+        renderItem={({ item }) => <BookCard item={item} />}
         keyExtractor={(item) => item.key}
         refreshing={isLoading}
         onRefresh={() => refetch()}
-        //contentContainerStyle={styles.list}
       />
     </View>
   );

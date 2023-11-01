@@ -1,3 +1,3 @@
-import TrendingCard from './cards/trending/TrendingCard';
+import BookCard from './cards/book/BookCard';
 import { Loader } from './loader';
-export { TrendingCard, Loader };
+export { BookCard, Loader };

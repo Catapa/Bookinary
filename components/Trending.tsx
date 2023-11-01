@@ -3,20 +3,22 @@ import { Text } from 'react-native';
 import { Grid } from './views';
 import { useTrendingBooks } from '../api/hooks';
 
-export const Trending = () => {
-  const { data, isLoading, error, refetch } = useTrendingBooks('monthly');
+interface IProps {
+  limit?: number;
+}
+export const Trending = ({ limit }: IProps) => {
+  const { data, isLoading, error, refetch } = useTrendingBooks('monthly', {
+    limit,
+  });
 
   return (
-    !isLoading && (
-      <>
-        <Text>Alo?</Text>
-        <Grid
-          data={data.works}
-          isLoading={isLoading}
-          error={error}
-          refetch={refetch}
-        />
-      </>
-    )
+    <>
+      <Grid
+        data={data?.works}
+        isLoading={isLoading}
+        error={error}
+        refetch={refetch}
+      />
+    </>
   );
 };

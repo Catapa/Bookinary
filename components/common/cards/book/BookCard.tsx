@@ -5,8 +5,9 @@ import { ITrendingItem } from '../../../../types';
 
 interface IProps {
   item: ITrendingItem;
+  round?: boolean;
 }
-const TrendingCard = ({ item }: IProps) => {
+const BookCard = ({ item, round }: IProps) => {
   const router = useRouter();
   const getCoverUrl = (
     cover_key: string,
@@ -20,7 +21,7 @@ const TrendingCard = ({ item }: IProps) => {
   };
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[styles.card, round && styles.rounded]}
       onPress={() => navigateToDetails(item.cover_edition_key, item.key)}
     >
       <View style={styles.coverContainer}>
@@ -39,23 +40,29 @@ const TrendingCard = ({ item }: IProps) => {
     </TouchableOpacity>
   );
 };
-export default TrendingCard;
+export default BookCard;
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1 / 2,
+    flex: 1 / 3,
     borderWidth: 1,
     borderColor: '#ddd',
     padding: 12,
+    width: 150,
+    //maxWidth: Dimensions.get('window').width / 3,
+  },
+  rounded: {
+    borderRadius: 20,
   },
   title: {
     fontSize: 16,
   },
   author: {
     fontSize: 12,
+    marginBottom: 4,
   },
   coverContainer: {
-    marginHorizontal: 12,
+    marginHorizontal: 8,
     //borderWidth: 1,
     borderColor: '#888',
     alignItems: 'center',
