@@ -2,12 +2,49 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTrendingBooks } from '../api/hooks';
+import { useRequest } from '../api/hooks/generic/useRequest';
 import { HorizontalList, SearchBar } from '../components/views';
 
 export default function App() {
-  const { data, isLoading, error } = useTrendingBooks('daily', {
-    limit: 20,
+  /* Retrieve trending */
+  const {
+    data: trendingData,
+    isLoading: trendingLoading,
+    error: trendingError,
+  } = useTrendingBooks('daily', {
+    limit: 10,
   });
+
+  /* Retrieve classic books */
+  const classicBooksKey = 'accessible_book';
+  const {
+    data: classicBooksData,
+    isLoading: classicBooksLoading,
+    error: classicBooksError,
+  } = useRequest(`/subjects/${classicBooksKey}`, {
+    limit: 10,
+  });
+
+  /* Retrieve business books */
+  const businessBooksKey = 'business';
+  const {
+    data: businessBooksData,
+    isLoading: businessBooksLoading,
+    error: businessBooksError,
+  } = useRequest(`/subjects/${businessBooksKey}`, {
+    limit: 10,
+  });
+
+  /* Retrieve programming books */
+  const programmingBooksKey = 'programming';
+  const {
+    data: programmingBooksData,
+    isLoading: programmingBooksLoading,
+    error: programmingBooksError,
+  } = useRequest(`/subjects/${programmingBooksKey}`, {
+    limit: 10,
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{ flex: 1 }}>
@@ -21,11 +58,44 @@ export default function App() {
 
         {/* Trending */}
         <HorizontalList
-          data={data?.works}
-          isLoading={isLoading}
-          error={error}
+          data={trendingData?.works}
+          isLoading={trendingLoading}
+          error={trendingError}
           heading="Trending"
-          redirect="/list/trending"
+          redirect="/catalog/trending"
+        />
+
+        {/* Classic books */}
+        <HorizontalList
+          data={classicBooksData?.works}
+          isLoading={classicBooksLoading}
+          error={classicBooksError}
+          heading="Classic books"
+          redirect={`/catalog/subjects?${new URLSearchParams({
+            query: classicBooksKey,
+          })}`}
+        />
+
+        {/* Business books */}
+        <HorizontalList
+          data={businessBooksData?.works}
+          isLoading={businessBooksLoading}
+          error={businessBooksError}
+          heading="Business books"
+          redirect={`/catalog/subjects?${new URLSearchParams({
+            query: businessBooksKey,
+          })}`}
+        />
+
+        {/* Programming books */}
+        <HorizontalList
+          data={programmingBooksData?.works}
+          isLoading={programmingBooksLoading}
+          error={programmingBooksError}
+          heading="Programming books"
+          redirect={`/catalog/subjects?${new URLSearchParams({
+            query: programmingBooksKey,
+          })}`}
         />
       </ScrollView>
 
@@ -41,7 +111,7 @@ const styles = StyleSheet.create({
   },
   hero: {
     backgroundColor: '#454ade',
-    paddingVertical: 36,
+    paddingVertical: 64,
     paddingHorizontal: 4,
     borderBottomEndRadius: 150,
     marginBottom: 16,

@@ -7,7 +7,7 @@ import { Loader, BookCard } from '../../common';
 interface IProps extends IResponse {
   headerComponent?: ReactElement;
 }
-export const Grid = ({
+export const GridView = ({
   data,
   isLoading,
   error,

@@ -68,7 +68,7 @@ export const HorizontalList = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 16,
+    marginBottom: 16,
   },
   headerContainer: {
     flex: 1,

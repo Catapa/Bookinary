@@ -2,7 +2,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useRequest } from '../../api/hooks/generic/useRequest';
-import { Grid } from '../../components/views';
+import { GridView } from '../../components/views';
 
 const PageHeader = ({ text = '' }) => {
   return (
@@ -20,7 +20,7 @@ const SearchPage = () => {
   });
   return (
     <View style={{ flex: 1 }}>
-      <Grid
+      <GridView
         data={data?.docs}
         isLoading={isLoading}
         error={error}
