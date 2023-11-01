@@ -4,6 +4,7 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTrendingBooks } from '../api/hooks';
 import { useRequest } from '../api/hooks/generic/useRequest';
 import { HorizontalList, SearchBar } from '../components/views';
+import { COLORS } from '../styles';
 
 export default function App() {
   /* Retrieve trending */
@@ -107,10 +108,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.white,
   },
   hero: {
-    backgroundColor: '#454ade',
+    backgroundColor: COLORS.primary,
     paddingVertical: 64,
     paddingHorizontal: 4,
     borderBottomEndRadius: 150,
@@ -120,13 +121,13 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: '300',
     textAlign: 'center',
-    color: '#ffffff',
+    color: COLORS.white,
   },
   subheading: {
     fontSize: 24,
     fontWeight: '200',
     textAlign: 'center',
     fontStyle: 'italic',
-    color: '#ffffff',
+    color: COLORS.white,
   },
 });

@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 
+import styles from './book.style';
 import { ITrendingItem } from '../../../../types';
 
 interface IProps {
@@ -41,35 +42,3 @@ const BookCard = ({ item, round }: IProps) => {
   );
 };
 export default BookCard;
-
-const styles = StyleSheet.create({
-  card: {
-    flex: 1 / 3,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 12,
-    width: 150,
-    //maxWidth: Dimensions.get('window').width / 3,
-  },
-  rounded: {
-    borderRadius: 20,
-  },
-  title: {
-    fontSize: 16,
-  },
-  author: {
-    fontSize: 12,
-    marginBottom: 4,
-  },
-  coverContainer: {
-    marginHorizontal: 8,
-    //borderWidth: 1,
-    borderColor: '#888',
-    alignItems: 'center',
-    height: 170,
-  },
-  coverImage: {
-    width: '100%',
-    height: '100%',
-  },
-});

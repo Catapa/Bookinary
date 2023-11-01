@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import styles from './catalog.style';
 import { Trending } from '../../components';
 import { Subjects } from '../../components/Subjects';
 
@@ -34,15 +35,3 @@ const ListPage = () => {
   return <View style={{ flex: 1 }}>{List}</View>;
 };
 export default ListPage;
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    padding: 8,
-    marginBottom: 16,
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: '500',
-    textTransform: 'capitalize',
-  },
-});

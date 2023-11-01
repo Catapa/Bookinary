@@ -1,14 +1,8 @@
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { ReactNode } from 'react';
-import {
-  FlatList,
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 
+import styles from './HorizontalList.style';
 import { IResponse } from '../../../types';
 import { BookCard, Loader } from '../../common';
 
@@ -64,27 +58,3 @@ export const HorizontalList = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 16,
-  },
-  headerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 12,
-  },
-  headingText: {
-    fontSize: 24,
-    fontWeight: '500',
-  },
-  showAllContainer: {},
-  showAllText: {
-    fontSize: 16,
-    fontWeight: '400',
-    textDecorationLine: 'underline',
-  },
-});

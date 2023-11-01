@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import styles from './search.style';
 import { useRequest } from '../../api/hooks/generic/useRequest';
 import { GridView } from '../../components/views';
 
@@ -31,22 +32,3 @@ const SearchPage = () => {
   );
 };
 export default SearchPage;
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    padding: 8,
-    marginBottom: 16,
-    flexWrap: 'wrap',
-  },
-  headingPrimary: {
-    fontSize: 24,
-    fontWeight: '500',
-  },
-  headingSecondary: {
-    fontSize: 24,
-    fontWeight: '300',
-    fontStyle: 'italic',
-  },
-});

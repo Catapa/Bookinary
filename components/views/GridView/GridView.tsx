@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 
+import styles from './GridView.style';
 import { IResponse } from '../../../types';
 import { Loader, BookCard } from '../../common';
 
@@ -30,11 +31,3 @@ export const GridView = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-});
