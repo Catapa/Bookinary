@@ -7,6 +7,20 @@ import { Trending } from '../../components';
 import { Subjects } from '../../components/Subjects';
 import { COLORS } from '../../styles';
 
+/**
+ * Component: Header
+ *
+ * This component displays a header with a customizable text.
+ *
+ * @param text - The text to display in the header.
+ *
+ * Usage:
+ * ```typescript
+ * <Header text="My Header Text" />
+ * ```
+ *
+ * @component
+ */
 const Header = ({ text = '' }) => {
   return (
     <View style={styles.headerContainer}>
@@ -14,6 +28,19 @@ const Header = ({ text = '' }) => {
     </View>
   );
 };
+
+/**
+ * Component: ListPage
+ *
+ * This component displays a list of books based on the selected 'key' and 'query' search parameters.
+ *
+ * Usage:
+ * ```javascript
+ * <ListPage />
+ * ```
+ *
+ * @component
+ */
 const ListPage = () => {
   const { key, query } = useLocalSearchParams();
   let List;

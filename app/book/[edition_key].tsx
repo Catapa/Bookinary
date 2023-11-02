@@ -16,6 +16,19 @@ import { Loader } from '../../components/common/loader';
 import { COLORS } from '../../styles';
 import { T_Edition_Key } from '../../types';
 
+/**
+ * Component: BookDetailPage
+ *
+ * This component displays detailed information about a book, including its cover,
+ * title, subtitle, authors, description, subjects, and other metadata.
+ *
+ * Usage:
+ * ```javascript
+ * <BookDetailPage />
+ * ```
+ *
+ * @component
+ */
 const BookDetailPage = () => {
   const { edition_key } = useLocalSearchParams();
 

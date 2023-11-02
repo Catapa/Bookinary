@@ -7,6 +7,21 @@ import { useRequest } from '../../api/hooks/generic/useRequest';
 import { GridView } from '../../components/views';
 import { COLORS } from '../../styles';
 
+/**
+ * Component: PageHeader
+ *
+ * This component displays a page header with a primary heading and a secondary heading.
+ * It is typically used to show additional information about the page content.
+ *
+ * @param text - The text to display as the secondary heading.
+ *
+ * Usage:
+ * ```javascript
+ * <PageHeader text="Page title" />
+ * ```
+ *
+ * @component
+ */
 const PageHeader = ({ text = '' }) => {
   return (
     <View style={styles.headerContainer}>
@@ -16,6 +31,19 @@ const PageHeader = ({ text = '' }) => {
   );
 };
 
+/**
+ * Component: SearchPage
+ *
+ * This component displays search results based on a query search param and provides options to
+ * refine the search or refresh the results.
+ *
+ * Usage:
+ * ```javascript
+ * <SearchPage />
+ * ```
+ *
+ * @component
+ */
 const SearchPage = () => {
   const { query } = useLocalSearchParams();
   const { data, isLoading, error, refetch } = useRequest('search.json', {

@@ -6,6 +6,16 @@ import { IResponse } from '../../../types';
 
 const BASE_URL = 'https://openlibrary.org';
 
+/**
+ * Fetches data from an API endpoint using Axios and provides a stateful response.
+ *
+ * @param {string} endpoint - The API endpoint to fetch data from.
+ * @param {object} [params] - Optional query parameters for the request.
+ * @param {string} [base_url] - Optional base URL for the API endpoint.
+ * @param {boolean} [shouldFetch=true] - A flag indicating whether data should be fetched immediately.
+ *
+ * @returns {IResponse} An object containing the response data, loading state, error and a refetch function.
+ */
 export const useRequest = (
   endpoint: string,
   params?: object,

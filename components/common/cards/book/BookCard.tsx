@@ -8,6 +8,24 @@ interface IProps {
   item: ITrendingItem;
   round?: boolean;
 }
+
+/**
+ * Component: BookCard
+ *
+ * This component represents a card displaying information about a book, including its cover,
+ * title, and author. It can be used in lists or grids of books.
+ *
+ * @param {IProps} props - An object containing the properties for rendering the book card.
+ * @param {object} props.item - The book data to display on the card.
+ * @param {boolean} props.round - A flag indicating whether the card should have rounded corners.
+ *
+ * Usage:
+ * ```javascript
+ * <BookCard item={bookData} round={true} />
+ * ```
+ *
+ * @component
+ */
 const BookCard = ({ item, round }: IProps) => {
   const router = useRouter();
   const getCoverUrl = (

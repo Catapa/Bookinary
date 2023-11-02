@@ -10,6 +10,32 @@ interface IProps extends Partial<IResponse> {
   heading: string;
   redirect?: string;
 }
+/**
+ * Component: HorizontalList
+ *
+ * This component displays a horizontal list of items, typically used for showcasing trending content.
+ * It provides loading feedback, error handling, and an option to redirect to a full list view.
+ *
+ * @param {IProps} props - An object containing the properties for rendering the horizontal list.
+ * @param {Array<Object>} props.data - An array of data items to display in the horizontal list.
+ * @param {boolean} props.isLoading - A flag indicating whether the data is currently loading.
+ * @param {Error | null} props.error - An optional error object, if an error occurred during data fetching.
+ * @param {string} props.heading - The heading text to display at the top of the list.
+ * @param {string} props.redirect - An optional route to redirect to when "Show all" is clicked.
+ *
+ * Usage:
+ * ```javascript
+ * <HorizontalList
+ *   data={itemsArray}
+ *   isLoading={loadingState}
+ *   error={errorObject}
+ *   heading="Trending"
+ *   redirect="/full-trending-list"
+ * />
+ * ```
+ *
+ * @component
+ */
 export const HorizontalList = ({
   data,
   isLoading,
