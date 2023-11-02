@@ -1,5 +1,14 @@
+import { Feather, Ionicons } from '@expo/vector-icons';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 
 import { useTrendingBooks } from '../api/hooks';
 import { useRequest } from '../api/hooks/generic/useRequest';
@@ -48,6 +57,30 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Stack.Screen
+        options={{
+          headerStyle: { backgroundColor: COLORS.primary },
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Feather name="menu" size={36} color={COLORS.white} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ flexDirection: 'row', alignItems: 'baseline', gap: 4 }}
+            >
+              <Text
+                style={{ color: COLORS.white, fontSize: 16, fontWeight: '200' }}
+              >
+                My Library
+              </Text>
+              <Ionicons name="library" size={36} color={COLORS.white} />
+            </TouchableOpacity>
+          ),
+          headerTitle: '',
+        }}
+      />
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.hero}>
           <Text style={styles.heading}>Bookinary</Text>
@@ -122,6 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     color: COLORS.white,
+    fontFamily: 'DMRegular',
   },
   subheading: {
     fontSize: 24,
@@ -129,5 +163,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
     color: COLORS.white,
+    fontFamily: 'DMRegular',
   },
 });

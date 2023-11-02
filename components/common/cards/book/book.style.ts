@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   card: {
     flex: 1 / 3,
@@ -13,10 +13,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+    fontFamily: 'DMRegular',
   },
   author: {
     fontSize: 12,
     marginBottom: 4,
+    fontFamily: 'DMRegular',
   },
   coverContainer: {
     marginHorizontal: 8,

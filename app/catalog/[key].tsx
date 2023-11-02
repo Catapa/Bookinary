@@ -1,9 +1,11 @@
-import { useLocalSearchParams } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './catalog.style';
 import { Trending } from '../../components';
 import { Subjects } from '../../components/Subjects';
+import { COLORS } from '../../styles';
 
 const Header = ({ text = '' }) => {
   return (
@@ -32,6 +34,38 @@ const ListPage = () => {
     );
   }
 
-  return <View style={{ flex: 1 }}>{List}</View>;
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightGray }}>
+      <Stack.Screen
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightGray },
+          headerShadowVisible: false,
+          /* headerLeft: () => (
+            <TouchableOpacity>
+              <Feather name="menu" size={36} color={COLORS.white} />
+            </TouchableOpacity>
+          ), */
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ flexDirection: 'row', alignItems: 'baseline', gap: 4 }}
+            >
+              <Text
+                style={{
+                  color: COLORS.black,
+                  fontSize: 16,
+                  fontWeight: '200',
+                }}
+              >
+                My Library
+              </Text>
+              <Ionicons name="library" size={36} color={COLORS.black} />
+            </TouchableOpacity>
+          ),
+          headerTitle: '',
+        }}
+      />
+      {List}
+    </SafeAreaView>
+  );
 };
 export default ListPage;

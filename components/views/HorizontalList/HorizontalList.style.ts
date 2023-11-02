@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'DMRegular',
   },
   showAllContainer: {},
   showAllText: {
     fontSize: 16,
     fontWeight: '400',
     textDecorationLine: 'underline',
+    fontFamily: 'DMRegular',
   },
 });
 export default styles;

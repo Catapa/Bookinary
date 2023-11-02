@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
+
+import { COLORS } from '../../styles';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#FAFAFC',
+    backgroundColor: COLORS.lightGray,
     padding: 16,
   },
   bookImage: {
@@ -20,12 +22,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(50, 50, 50)',
     fontWeight: '600',
+    fontFamily: 'DMMedium',
   },
   bookSubtitle: {
     marginBottom: 8,
     fontSize: 16,
     textAlign: 'center',
     color: 'rgb(170, 170, 170)',
+    fontFamily: 'DMRegular',
   },
   authorContainer: {
     marginBottom: 20,
@@ -34,12 +38,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     textAlign: 'center',
+    fontFamily: 'DMRegular',
   },
   bookDescription: {
     fontSize: 14,
     color: 'rgb(50, 50, 50)',
     fontWeight: '300',
     marginBottom: 16,
+    fontFamily: 'DMRegular',
   },
   subjectTag: {
     fontSize: 12,
@@ -47,11 +53,13 @@ const styles = StyleSheet.create({
     color: 'rgb(50, 50, 50)',
     textDecorationLine: 'underline',
     textDecorationColor: 'rgb(220, 220, 200)',
+    fontFamily: 'DMRegular',
   },
   subjectHeader: {
     fontSize: 12,
     color: 'rgb(128, 128, 128)',
     fontWeight: '300',
+    fontFamily: 'DMRegular',
   },
   subjectContainer: {
     marginBottom: 16,
@@ -65,8 +73,8 @@ const styles = StyleSheet.create({
     width: '66%',
     marginBottom: 20,
     alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: 'rgb(97, 130, 100)',
+    //borderWidth: 2,
+    //borderColor: 'rgb(97, 130, 100)',
     paddingHorizontal: 8,
     paddingVertical: 8,
     borderRadius: 100,
@@ -77,6 +85,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     color: 'rgb(255, 255, 255)',
+    fontFamily: 'DMRegular',
   },
 });
 export default styles;
